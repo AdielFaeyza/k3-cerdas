@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: k3-mysql
+    environment:
+      MYSQL_DATABASE: k3_cerdas
+      MYSQL_USER: k3
+      MYSQL_PASSWORD: k3secret
+      MYSQL_ROOT_PASSWORD: rootsecret
+      TZ: Asia/Jakarta
+    ports: ["3306:3306"]
+    volumes: [k3-mysql:/var/lib/mysql]
+volumes:
+  k3-mysql:

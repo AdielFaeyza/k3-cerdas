@@ -1,0 +1,8 @@
+server/
+edge/.venv/
+edge/models/*.pt
+edge/samples/
+frontend/node_modules/
+frontend/dist/
+.env
+__pycache__/

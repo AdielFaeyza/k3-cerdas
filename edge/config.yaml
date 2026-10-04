@@ -1,0 +1,35 @@
+api:
+  base_url: http://localhost:8000/api/v1
+  edge_token: ganti-dengan-token-rahasia # samakan dengan K3_EDGE_TOKEN di Laravel
+  timeout: 5
+
+model:
+  path: models/k3-ppe-yolov8.pt # model YOLOv8 kustom (dilatih dataset APD)
+  confidence: 0.5
+  device: cpu # "0" untuk GPU NVIDIA
+  # nama kelas logis -> nama kelas di model Anda
+  classes:
+    person: person
+    helmet: helmet
+    vest: vest
+    goggles: goggles
+    heavy_machine: excavator
+
+rules:
+  min_violation_seconds: 1.5 # pelanggaran harus konsisten selama ini (anti false-positive)
+  session_reset_seconds: 30 # patuh/tidak terlihat selama ini = sesi pelanggaran baru
+  danger_radius_m: 5.0 # radius zona bahaya alat berat (meter, bukan piksel)
+  target_fps: 5
+
+cameras:
+  - code: CAM-ZONE-A
+    rtsp: rtsp://user:pass@192.168.1.10:554/stream1
+    checks: [helmet, vest]
+    # Kalibrasi homography: 4 titik di gambar (piksel) -> koordinat lantai (meter).
+    # Ukur 4 penanda di lantai (mis. sudut area 20x15 m) lalu catat posisinya di frame.
+    homography:
+      image_points: [[210, 700], [1700, 690], [1350, 260], [560, 270]]
+      world_points: [[0, 0], [20, 0], [20, 15], [0, 15]]
+  - code: CAM-WELDING-B
+    rtsp: rtsp://user:pass@192.168.1.11:554/stream1
+    checks: [helmet, goggles]

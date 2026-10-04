@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "MySQL (Docker)", "type": "shell", "command": "docker compose up -d mysql", "problemMatcher": [] },
+    { "label": "Backend: Laravel API", "type": "shell", "command": "php artisan serve", "options": { "cwd": "${workspaceFolder}/server" }, "isBackground": true, "problemMatcher": [] },
+    { "label": "Backend: Reverb WebSocket", "type": "shell", "command": "php artisan reverb:start --debug", "options": { "cwd": "${workspaceFolder}/server" }, "isBackground": true, "problemMatcher": [] },
+    { "label": "Frontend: Dashboard", "type": "shell", "command": "npm run dev", "options": { "cwd": "${workspaceFolder}/frontend" }, "isBackground": true, "problemMatcher": [] },
+    { "label": "Edge: Unit test", "type": "shell", "command": ".venv/bin/python -m unittest discover -s tests", "options": { "cwd": "${workspaceFolder}/edge" }, "problemMatcher": [] },
+    {
+      "label": "Jalankan Semua",
+      "dependsOn": ["MySQL (Docker)", "Backend: Laravel API", "Backend: Reverb WebSocket", "Frontend: Dashboard"],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}

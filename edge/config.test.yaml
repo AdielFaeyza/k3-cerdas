@@ -1,0 +1,28 @@
+api:
+  base_url: http://127.0.0.1:8000/api/v1
+  edge_token: rahasia-edge-123
+  timeout: 5
+
+model:
+  path: models/k3-ppe-yolov8.pt
+  confidence: 0.4
+  device: cpu
+  # kelas logis -> nama kelas di model (Construction-Site-Safety v30)
+  classes:
+    person: Person
+    helmet: Hardhat
+    no_helmet: NO-Hardhat
+    vest: Safety Vest
+    no_vest: NO-Safety Vest
+    heavy_machine: [Excavator, machinery, wheel loader, dump truck]
+
+rules:
+  min_violation_seconds: 1.5
+  session_reset_seconds: 30
+  danger_radius_m: 5.0
+  target_fps: 5
+
+cameras:
+  - code: CAM-ZONE-A
+    rtsp: 0
+    checks: [helmet]          # tambahkan vest jika ingin menguji rompi

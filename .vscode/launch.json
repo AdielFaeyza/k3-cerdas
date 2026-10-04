@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Edge: Uji dengan video file",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/edge/main.py",
+      "cwd": "${workspaceFolder}/edge",
+      "args": ["--config", "config.yaml", "--test-video", "samples/uji.mp4", "--show"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Edge: Semua CCTV (RTSP)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/edge/main.py",
+      "cwd": "${workspaceFolder}/edge",
+      "args": ["--config", "config.yaml"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

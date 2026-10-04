@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "bmewburn.vscode-intelephense-client",
+    "onecentlin.laravel-blade",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mikestead.dotenv",
+    "cweijan.vscode-mysql-client2"
+  ]
+}
